@@ -35,7 +35,7 @@ However, many modern Android smartphones already contain high-speed **Time-of-Fl
 
 ## ✨ Key Features
 
-- ⚡ **Zero Cloud & Sub-10ms Latency**: Direct peer-to-peer UDP packet transmission over local Wi-Fi or USB tethering.
+- ⚡ **Zero Cloud & Low Latency**: Direct peer-to-peer UDP packet transmission over local Wi-Fi or USB tethering.
 - 🎯 **Raw Metric Accuracy**: 16-bit depth values providing millimeter precision + 3-bit per-pixel confidence scores.
 - 👁️ **Live Visualizer (`receiver.py`)**: Real-time normalized false-color depth stream with center distance telemetry and configurable range scaling.
 - 🤖 **Extensible NumPy Buffer**: Incoming depth frames are stored in standard 2D NumPy arrays (`uint16`), making it trivial to pipe into **ROS 2**, **OpenCV**, or custom robotics pipelines.
@@ -75,15 +75,17 @@ Compute distances to bounding boxes or minimum forward clearance for collision p
 
 ## 📱 Supported Hardware
 
-Your Android device must have hardware depth sensing capability exposing Camera2 `REQUEST_AVAILABLE_CAPABILITIES_DEPTH_OUTPUT` (rear ToF / 3D Laser sensor or ARCore Depth support):
+Your Android device must have a **hardware Time-of-Flight (ToF) camera** exposing Camera2 `REQUEST_AVAILABLE_CAPABILITIES_DEPTH_OUTPUT`:
 
-| Device Family | Models with ToF / Laser Sensor | Typical Resolution |
+| Device Family | Models with Hardware ToF Sensor | Depth Stream Resolution |
 | :--- | :--- | :--- |
 | **Samsung Galaxy** | **Galaxy S10 5G** *(Primary Tested & Verified ⭐)*, S20 Ultra, Note 10+, Note 20 Ultra, A80 | 240x180 DEPTH16 |
 | **Huawei** | P30 Pro, Mate 30 Pro, P40 Pro, Mate 40 Pro | Full ToF raw stream |
 | **Honor** | View 20, 30 Pro+ | Full ToF raw stream |
-| **Google Pixel** | Pixel 4 (front), Pixel 7/8/9 (ARCore Depth16) | Standard Camera2 Depth |
-| **Other Android** | Any phone supporting Android Camera2 DEPTH16 API | Device-dependent |
+| **LG** | G8 ThinQ, V60 ThinQ | Full ToF raw stream |
+| **Other Android** | Any smartphone with physical ToF depth sensor & Camera2 DEPTH16 | Device-dependent |
+
+> ⚠️ **Hardware Clarification**: This tool requires a physical **multi-pixel Time-of-Flight (ToF) sensor**. Single-point Laser Autofocus (LDAF) modules or monocular software depth estimation (such as Google Pixel 7/8/9 ARCore neural depth) are NOT imaging ToF sensors and are not supported.
 
 ---
 
@@ -96,7 +98,9 @@ DepthStreamer/
 │   └── src/main/java/com/example/depthstreamer/
 │       ├── MainActivity.kt           # Camera2 capture session & Jetpack Compose UI
 │       └── UdpSender.kt              # Chunked UDP packet sender
+├── DepthStreamer.apk                 # Pre-built release Android APK
 ├── receiver.py                       # 2D OpenCV colorized depth stream visualizer
+├── ros2_depth_publisher.py           # Native ROS 2 Image, CameraInfo & PointCloud2 publisher
 ├── requirements.txt                  # Minimal Python dependencies (numpy, opencv-python)
 ├── build.gradle.kts                  # Root Gradle build script
 ├── settings.gradle.kts               # Gradle settings
@@ -138,7 +142,9 @@ pip install -r requirements.txt
    - Tap **"Start Streaming"**.
 
 ### 5. Run the Receiver
-Start the Python receiver on your PC:
+
+#### Option A: 2D OpenCV Heatmap Visualizer
+Start the live false-color depth visualizer on your PC:
 ```bash
 python receiver.py
 ```
@@ -154,6 +160,20 @@ python receiver.py --port 5005 --max-depth 3000 --scale 4
 - `--quiet`: Mute terminal distance matrix printing
 
 Press **`q`** in the window or **Ctrl+C** in the terminal to exit.
+
+#### Option B: ROS 2 Bridge Node (for SLAM, RViz2 & Nav2)
+If you are running **ROS 2** (Humble, Iron, Jazzy, etc.) on Linux or WSL2, launch the publisher node to stream into ROS 2 topics:
+```bash
+source /opt/ros/<humble|iron|jazzy>/setup.bash
+python3 ros2_depth_publisher.py
+```
+
+*Published Topics:*
+- `/camera/depth/image_raw` (`sensor_msgs/msg/Image`, 16UC1 format in millimeters)
+- `/camera/depth/camera_info` (`sensor_msgs/msg/CameraInfo`)
+- `/camera/depth/points` (`sensor_msgs/msg/PointCloud2` 3D point cloud)
+
+View directly in RViz2 by adding a `PointCloud2` display on `/camera/depth/points` with fixed frame `camera_depth_optical_frame`.
 
 ---
 
