@@ -100,7 +100,6 @@ DepthStreamer/
 │       └── UdpSender.kt              # Chunked UDP packet sender
 ├── DepthStreamer.apk                 # Pre-built release Android APK
 ├── receiver.py                       # 2D OpenCV colorized depth stream visualizer
-├── ros2_depth_publisher.py           # Native ROS 2 Image, CameraInfo & PointCloud2 publisher
 ├── requirements.txt                  # Minimal Python dependencies (numpy, opencv-python)
 ├── build.gradle.kts                  # Root Gradle build script
 ├── settings.gradle.kts               # Gradle settings
@@ -160,20 +159,6 @@ python receiver.py --port 5005 --max-depth 3000 --scale 4
 - `--quiet`: Mute terminal distance matrix printing
 
 Press **`q`** in the window or **Ctrl+C** in the terminal to exit.
-
-#### Option B: ROS 2 Bridge Node (for SLAM, RViz2 & Nav2)
-If you are running **ROS 2** (Humble, Iron, Jazzy, etc.) on Linux or WSL2, launch the publisher node to stream into ROS 2 topics:
-```bash
-source /opt/ros/<humble|iron|jazzy>/setup.bash
-python3 ros2_depth_publisher.py
-```
-
-*Published Topics:*
-- `/camera/depth/image_raw` (`sensor_msgs/msg/Image`, 16UC1 format in millimeters)
-- `/camera/depth/camera_info` (`sensor_msgs/msg/CameraInfo`)
-- `/camera/depth/points` (`sensor_msgs/msg/PointCloud2` 3D point cloud)
-
-View directly in RViz2 by adding a `PointCloud2` display on `/camera/depth/points` with fixed frame `camera_depth_optical_frame`.
 
 ---
 
