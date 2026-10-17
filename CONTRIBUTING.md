@@ -67,10 +67,10 @@ We are particularly excited about contributions in:
 
 1. **Keep changes focused**: A PR should ideally do one thing well.
 2. **Test your code**:
-   - Verify Python syntax: `python -m py_compile *.py`
+   - Verify Python syntax: `python -m py_compile receiver.py`
    - Test UDP streaming locally using loopback or on a local Wi-Fi network.
 3. **Write descriptive commit messages**:
-   - Good: `feat(ros2): add camera_info publisher with factory intrinsics`
+   - Good: `feat(app): add support for 60fps depth streaming`
    - Bad: `updates`
 4. **Open a Pull Request** against the `main` branch with a clear description of what changed and how it was tested.
 
