@@ -1,0 +1,9 @@
+# Core DepthStreamer dependencies
+numpy>=1.22.0
+opencv-python>=4.7.0
+open3d>=0.17.0
+pillow>=9.5.0
+
+# Optional for ROS 2 users:
+# ROS 2 Python client libraries (rclpy, sensor_msgs, etc.) are installed via your ROS 2 distribution
+# (e.g. sudo apt install ros-humble-sensor-msgs ros-humble-cv-bridge)

@@ -1,0 +1,60 @@
+# ==========================================
+# Android & Gradle
+# ==========================================
+.gradle/
+build/
+app/build/
+local.properties
+*.iml
+.idea/
+.kotlin/
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.ap_
+*.aab
+*.dex
+*.class
+
+# Keystores & Signing
+*.jks
+*.keystore
+
+# ==========================================
+# Python
+# ==========================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+dist/
+build/
+*.egg-info/
+.pytest_cache/
+
+# ==========================================
+# 3D Point Clouds & Scanned Models (Outputs)
+# ==========================================
+*.ply
+*.pcd
+*.xyz
+*.obj
+*.stl
+scanned_object_*.ply
+
+# ==========================================
+# OS & Editor
+# ==========================================
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~
+.vscode/
