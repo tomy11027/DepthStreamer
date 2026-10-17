@@ -124,7 +124,7 @@ pip install -r requirements.txt
 ```
 
 ### 3. Install the Android App
-- **Option A (Direct Download APK)**:
+- **(Direct Download APK)**:
   Download **[DepthStreamer.apk](https://github.com/tomy11027/DepthStreamer/raw/main/DepthStreamer.apk)** directly from this repository and install it on your phone.
 - **Option B (Build from Source)**:
   Open this project folder in **Android Studio** and click **Run**, or build via terminal:
