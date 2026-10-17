@@ -142,7 +142,7 @@ pip install -r requirements.txt
 
 ### 5. Run the Receiver
 
-#### Option A: 2D OpenCV Heatmap Visualizer
+#### 2D OpenCV Heatmap Visualizer
 Start the live false-color depth visualizer on your PC:
 ```bash
 python receiver.py
