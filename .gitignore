@@ -12,6 +12,7 @@ captures/
 .externalNativeBuild/
 .cxx/
 *.apk
+!DepthStreamer.apk
 *.ap_
 *.aab
 *.dex

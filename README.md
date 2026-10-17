@@ -9,6 +9,10 @@
 [![OpenCV](https://img.shields.io/badge/OpenCV-4.x-red.svg)](https://opencv.org)
 [![NumPy](https://img.shields.io/badge/NumPy-1.22%2B-blue.svg)](https://numpy.org)
 
+<br/>
+
+[![Download APK](https://img.shields.io/badge/Download%20APK-DepthStreamer.apk-brightgreen.svg?style=for-the-badge&logo=android)](DepthStreamer.apk)
+
 **Stream raw, uncompressed 3D Time-of-Flight (ToF) laser depth data from your Android phone directly to your PC, robot computer, or workstation over low-latency UDP at 30+ FPS.**
 
 [Key Features](#-key-features) • [Navigation, SLAM & ROS 2](#-navigation-slam--robotics) • [Quickstart](#-quickstart-guide) • [Network Protocol](#-udp-binary-protocol) • [Supported Hardware](#-supported-hardware)
@@ -117,8 +121,8 @@ pip install -r requirements.txt
 ```
 
 ### 3. Install the Android App
-- **Option A (Install Pre-Built Release APK)**:
-  Download the latest `DepthStreamer-release.apk` from the [Releases](https://github.com/tomy11027/DepthStreamer/releases) page and install it on your phone.
+- **Option A (Direct Download APK)**:
+  Download **[DepthStreamer.apk](https://github.com/tomy11027/DepthStreamer/raw/main/DepthStreamer.apk)** directly from this repository and install it on your phone.
 - **Option B (Build from Source)**:
   Open this project folder in **Android Studio** and click **Run**, or build via terminal:
   ```powershell
