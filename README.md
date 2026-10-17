@@ -79,7 +79,7 @@ Your Android device must have hardware depth sensing capability exposing Camera2
 
 | Device Family | Models with ToF / Laser Sensor | Typical Resolution |
 | :--- | :--- | :--- |
-| **Samsung Galaxy** | S20 Ultra, S10 5G, Note 10+, Note 20 Ultra, A80 | 240x180 DEPTH16 |
+| **Samsung Galaxy** | **Galaxy S10 5G** *(Primary Tested & Verified ⭐)*, S20 Ultra, Note 10+, Note 20 Ultra, A80 | 240x180 DEPTH16 |
 | **Huawei** | P30 Pro, Mate 30 Pro, P40 Pro, Mate 40 Pro | Full ToF raw stream |
 | **Honor** | View 20, 30 Pro+ | Full ToF raw stream |
 | **Google Pixel** | Pixel 4 (front), Pixel 7/8/9 (ARCore Depth16) | Standard Camera2 Depth |
